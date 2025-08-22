@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox pickOnBounds="false" prefHeight="400.0" prefWidth="640.0" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.jameseec.treevisualize.controller.VisualizeController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onClear" text="Clear" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Mode">
+          <items>
+                  <MenuItem fx:id="switchBSTButton" mnemonicParsing="false" onAction="#onSwitchBST" text="Simple BST" />
+                  <MenuItem fx:id="switchAVLButton" mnemonicParsing="false" onAction="#onSwitchAVL" text="AVL Tree" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+      <StackPane fx:id="viewportStack" VBox.vgrow="ALWAYS">
+         <children>
+            <Pane fx:id="contentPane" prefHeight="2000.0" prefWidth="2000.0" />
+            <VBox alignment="TOP_CENTER" fillWidth="false" maxWidth="-Infinity" pickOnBounds="false" prefWidth="100.0" spacing="2.0" StackPane.alignment="TOP_RIGHT">
+               <children>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="90.0" prefWidth="100.0" styleClass="setting-panel" VBox.vgrow="NEVER">
+                     <children>
+                        <Label text="Add Node" />
+                        <TextField fx:id="addField">
+                           <padding>
+                              <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
+                           </padding>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#onAddNode" text="Add">
+                           <VBox.margin>
+                              <Insets bottom="3.0" top="3.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets right="30.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="90.0" prefWidth="100.0" styleClass="setting-panel" VBox.vgrow="NEVER">
+                     <children>
+                        <Label text="Delete node" />
+                        <TextField fx:id="deleteField">
+                           <padding>
+                              <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
+                           </padding>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#onDeleteNode" text="Delete">
+                           <VBox.margin>
+                              <Insets bottom="3.0" top="3.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="90.0" prefWidth="100.0" styleClass="setting-panel" VBox.vgrow="NEVER">
+                     <children>
+                        <Label text="Find node" />
+                        <TextField fx:id="findField">
+                           <padding>
+                              <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
+                           </padding>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#onFindNode" text="Find">
+                           <VBox.margin>
+                              <Insets bottom="3.0" top="3.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <Button mnemonicParsing="false" onAction="#onClear" text="Clear tree" />
+               </children>
+               <StackPane.margin>
+                  <Insets right="5.0" top="5.0" />
+               </StackPane.margin>
+            </VBox>
+            <HBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" pickOnBounds="false" prefHeight="40.0" prefWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
+               <children>
+                  <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="3.0" HBox.hgrow="ALWAYS">
+                     <children>
+                      <Button mnemonicParsing="false" onAction="#onResetZoom" text="Reset zoom">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#onResetPanning" text="Reset Panning" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" />
+                     </padding>
+                  </HBox>
+                  <Label fx:id="infoLabel" alignment="BOTTOM_RIGHT" text="Messages will appear here" wrapText="true" HBox.hgrow="NEVER">
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
+  </children>
+</VBox>
