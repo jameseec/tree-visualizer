@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * Base class for tree renderers.
- * Abstracts common rendering logic for all tree types, allowing tree-specific renderers to add
+ * Abstracts shared rendering operations between all trees, allowing tree-specific renderers to add
  * tree type-specific features later.
  */
 public abstract class TreeRenderer {
@@ -99,6 +99,23 @@ public abstract class TreeRenderer {
         renderSearch(searchOrder, tree.getRoot(), val);
     }
 
+    public void showInOrderTraversal() {
+        updatePane();
+        int[] visitCount = new int[] {0};
+        renderInOrderTraversal(tree.getRoot(), visitCount);
+    }
+
+    private void renderInOrderTraversal(Node node, int[] visitCount) {
+        if (node == null) {
+            return;
+        } else {
+            renderInOrderTraversal(node.getLeftChild(), visitCount);
+            visitCount[0]++;
+            drawNodeOrderLabel(node, Integer.toString(visitCount[0]));
+            renderInOrderTraversal(node.getRightChild(), visitCount);
+        }
+    }
+
     // Recursively traverses tree and adds labels to show search order and highlight search path.
     private void renderSearch(Map<Node, Integer> searchOrder, Node node, int searchVal) {
         // Uses widthCache from last update operation
@@ -133,11 +150,11 @@ public abstract class TreeRenderer {
 
         int order = searchOrder.get(node);
 
-        labelNodeOrder(node, Integer.toString(order));
+        drawNodeOrderLabel(node, Integer.toString(order));
     }
 
     // Draws a label next to the node
-    private void labelNodeOrder(Node node, String labelVal) {
+    private void drawNodeOrderLabel(Node node, String labelVal) {
         Point2D pos = nodePositions.get(node.getValue());
         double x = pos.getX();
         double y = pos.getY();
