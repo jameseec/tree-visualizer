@@ -9,7 +9,6 @@ import io.github.jameseec.treevisualize.view.BSTRenderer;
 import io.github.jameseec.treevisualize.view.TreeRenderer;
 import io.github.jameseec.treevisualize.view.ZoomPanPane;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
@@ -150,6 +149,18 @@ public class VisualizeController {
         zoomPanPane.resetView();
 
         infoLabel.setText("Switched to simple binary search tree!");
+    }
+
+    public void onInOrder() {
+        currentRenderer.showInOrderTraversal();
+    }
+
+    public void onPreOrder() {
+//        currentRenderer.showPreOrderTraversal();
+    }
+
+    public void onPostOrder() {
+//        currentRenderer.showPostOrderTraversal();
     }
 
     /**

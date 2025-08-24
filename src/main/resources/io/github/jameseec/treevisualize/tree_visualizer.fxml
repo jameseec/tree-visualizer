@@ -43,9 +43,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox pickOnBounds="false" prefHeight="400.0" prefWidth="640.0" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.jameseec.treevisualize.controller.VisualizeController">
+<VBox pickOnBounds="false" prefHeight="400.0" prefWidth="640.0" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.jameseec.treevisualize.controller.VisualizeController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -60,6 +59,13 @@
                   <MenuItem fx:id="switchAVLButton" mnemonicParsing="false" onAction="#onSwitchAVL" text="AVL Tree" />
           </items>
         </Menu>
+            <Menu mnemonicParsing="false" text="Traversals">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onPreOrder" text="Pre-order" />
+                  <MenuItem mnemonicParsing="false" onAction="#onInOrder" text="In-order" />
+                  <MenuItem mnemonicParsing="false" onAction="#onPostOrder" text="Post-order" />
+               </items>
+            </Menu>
       </menus>
     </MenuBar>
       <StackPane fx:id="viewportStack" VBox.vgrow="ALWAYS">
