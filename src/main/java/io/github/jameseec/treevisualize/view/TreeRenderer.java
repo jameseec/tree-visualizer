@@ -187,7 +187,7 @@ public abstract class TreeRenderer {
         double y = pos.getY();
         Text order = new Text(labelVal);
         order.setTextOrigin(VPos.CENTER);
-        order.setX(x + NODE_RADIUS + 5);
+        order.setX(x + NODE_RADIUS + 3);
         order.setY(y);
         contentPane.getChildren().add(order);
     }

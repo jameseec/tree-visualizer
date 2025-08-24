@@ -32,10 +32,6 @@ public class VisualizeController {
     private TextField findField;
     @FXML
     private Label infoLabel;
-    @FXML
-    private MenuItem switchBSTButton;
-    @FXML
-    private MenuItem switchAVLButton;
 
     private Tree currentTree;
     private TreeRenderer currentRenderer;
@@ -46,9 +42,6 @@ public class VisualizeController {
     }
 
     public void initialize() {
-        // TODO: Re-enable button once AVL renderer implementation is complete.
-        switchAVLButton.setDisable(true);
-
         // Wrap contentPane with a ZoomPanPane
         viewportStack.getChildren().removeFirst();
         zoomPanPane = new ZoomPanPane(contentPane);
@@ -136,6 +129,10 @@ public class VisualizeController {
         System.out.println("New AVL Tree created.");
 
         currentRenderer = new AVLRenderer(currentTree, contentPane);
+        currentRenderer.updatePane();
+
+        zoomPanPane.resetView();
+        infoLabel.setText("Switched to AVL Tree!");
     }
 
     public void onSwitchBST() {
@@ -168,6 +165,7 @@ public class VisualizeController {
 
     /**
      * Helper for parsing an int from a text field, then applying a function if successful.
+     *
      * @param field TextField to attempt to parse int from.
      * @param action function to perform on int value from text field
      */
