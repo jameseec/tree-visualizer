@@ -1,6 +1,7 @@
 package io.github.jameseec.treevisualize.view;
 
 
+import io.github.jameseec.treevisualize.model.AVLTree;
 import io.github.jameseec.treevisualize.model.Tree;
 import javafx.scene.layout.Pane;
 
@@ -9,10 +10,11 @@ import javafx.scene.layout.Pane;
  */
 public class AVLRenderer extends TreeRenderer {
     // TODO Class is currently a placeholder, rendering logic must be implemented.
-
+    private AVLTree avlTree;
 
     public AVLRenderer(Tree tree, Pane contentPane) {
-        super(contentPane);
+        super(contentPane, tree);
+        avlTree = (AVLTree) tree;
     }
 
     /** {@inheritDoc} */
