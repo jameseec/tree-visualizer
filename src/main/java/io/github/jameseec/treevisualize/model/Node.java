@@ -5,7 +5,7 @@ package io.github.jameseec.treevisualize.model;
  */
 public class Node {
     private int value;
-    private int height; // should only used by AVL trees
+    private int height; // should only be used by AVL trees
     private Color color; // only used by Red-Black trees
     private Node leftChild;
     private Node rightChild;
