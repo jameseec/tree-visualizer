@@ -99,20 +99,49 @@ public abstract class TreeRenderer {
         renderSearch(searchOrder, tree.getRoot(), val);
     }
 
+    public void showPreOrderTraversal() {
+        updatePane();
+        int[] visitCount = new int[] {0};
+        renderPreOrderTraversal(tree.getRoot(), visitCount);
+    }
+
     public void showInOrderTraversal() {
         updatePane();
         int[] visitCount = new int[] {0};
         renderInOrderTraversal(tree.getRoot(), visitCount);
     }
 
+    public void showPostOrderTraversal() {
+        updatePane();
+        int[] visitCount = new int[] {0};
+        renderPostOrderTraversal(tree.getRoot(), visitCount);
+    }
+
+
+    private void renderPreOrderTraversal(Node node, int[] visitCount) {
+        if (node != null) {
+            visitCount[0]++;
+            drawNodeOrderLabel(node, Integer.toString(visitCount[0]));
+            renderPreOrderTraversal(node.getLeftChild(), visitCount);
+            renderPreOrderTraversal(node.getRightChild(), visitCount);
+        }
+    }
+
     private void renderInOrderTraversal(Node node, int[] visitCount) {
-        if (node == null) {
-            return;
-        } else {
+        if (node != null) {
             renderInOrderTraversal(node.getLeftChild(), visitCount);
             visitCount[0]++;
             drawNodeOrderLabel(node, Integer.toString(visitCount[0]));
             renderInOrderTraversal(node.getRightChild(), visitCount);
+        }
+    }
+
+    private void renderPostOrderTraversal(Node node, int[] visitCount) {
+        if (node != null) {
+            renderPostOrderTraversal(node.getLeftChild(), visitCount);
+            renderPostOrderTraversal(node.getRightChild(), visitCount);
+            visitCount[0]++;
+            drawNodeOrderLabel(node, Integer.toString(visitCount[0]));
         }
     }
 
@@ -124,14 +153,12 @@ public abstract class TreeRenderer {
         }
 
         renderSearchNode(searchOrder, node, searchVal);
-        if (node.getValue() == searchVal) {
-            return;
-        }
-        else if (node.getValue() < searchVal) {
+        if (node.getValue() < searchVal) {
             renderSearch(searchOrder, node.getRightChild(), searchVal);
         } else if (node.getValue() > searchVal) {
             renderSearch(searchOrder, node.getLeftChild(), searchVal);
         }
+        // Stop recursion if we reached searchVal.
     }
 
     private void renderSearchNode(Map<Node, Integer> searchOrder, Node node, int searchVal) {

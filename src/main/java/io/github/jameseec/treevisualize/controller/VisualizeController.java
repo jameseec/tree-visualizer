@@ -153,14 +153,17 @@ public class VisualizeController {
 
     public void onInOrder() {
         currentRenderer.showInOrderTraversal();
+        infoLabel.setText("Showing In-Order Traversal.");
     }
 
     public void onPreOrder() {
-//        currentRenderer.showPreOrderTraversal();
+        currentRenderer.showPreOrderTraversal();
+        infoLabel.setText("Showing Pre-Order Traversal.");
     }
 
     public void onPostOrder() {
-//        currentRenderer.showPostOrderTraversal();
+        currentRenderer.showPostOrderTraversal();
+        infoLabel.setText("Showing Post-Order Traversal.");
     }
 
     /**
