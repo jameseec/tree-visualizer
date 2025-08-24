@@ -37,6 +37,7 @@ public class VisualizeController {
     private TreeRenderer currentRenderer;
     private ZoomPanPane zoomPanPane;
     private Stage stage;
+
     public VisualizeController() {
         System.out.println("Controller created.");
     }
@@ -51,8 +52,21 @@ public class VisualizeController {
         System.out.println("New BinarySearchTree created.");
         currentRenderer = new BSTRenderer(currentTree, contentPane);
         addTextFormatters();
-        Platform.runLater(() -> zoomPanPane.resetView());
-        Platform.runLater(() -> stage = (Stage) infoLabel.getScene().getWindow());
+
+        Platform.runLater(() -> {
+                    try {
+                        currentTree.insert(3);
+                        currentTree.insert(1);
+                        currentTree.insert(5);
+                        currentTree.insert(4);
+                    } catch (InvalidNodeCountException e) {
+                        System.out.println("Something went wrong while initiating default tree.");
+                    }
+                    currentRenderer.updatePane();
+                    zoomPanPane.resetView();
+                    stage = (Stage) infoLabel.getScene().getWindow();
+                }
+        );
     }
 
     /**
@@ -166,7 +180,7 @@ public class VisualizeController {
     /**
      * Helper for parsing an int from a text field, then applying a function if successful.
      *
-     * @param field TextField to attempt to parse int from.
+     * @param field  TextField to attempt to parse int from.
      * @param action function to perform on int value from text field
      */
     private void handleIntInput(TextField field, Consumer<Integer> action) {

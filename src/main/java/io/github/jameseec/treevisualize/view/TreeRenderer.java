@@ -208,8 +208,8 @@ public abstract class TreeRenderer {
 
         // Leaf node: base width
         if (node.getLeftChild() == null && node.getRightChild() == null) {
-            widthCache.put(node, 1);
-            return 1;
+            widthCache.put(node, 2);
+            return 2;
         }
 
         // Internal node: sum of children's widths (including phantom nodes)
